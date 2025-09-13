@@ -1,0 +1,32 @@
+ERROR - 2025-09-13 09:56:18 --> mysqli_sql_exception: Table 'users' already exists in C:\wamp64\www\codeignitor_project\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\codeignitor_project\system\Database\MySQLi\Connection.php(327): mysqli->query('CREATE TABLE `u...', 0)
+#1 C:\wamp64\www\codeignitor_project\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `u...')
+#2 C:\wamp64\www\codeignitor_project\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `u...')
+#3 C:\wamp64\www\codeignitor_project\system\Database\Forge.php(570): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `u...')
+#4 C:\wamp64\www\codeignitor_project\app\Database\Migrations\2024-01-01-000001_CreateUsersTable.php(56): CodeIgniter\Database\Forge->createTable('users')
+#5 C:\wamp64\www\codeignitor_project\system\Database\MigrationRunner.php(876): App\Database\Migrations\CreateUsersTable->up()
+#6 C:\wamp64\www\codeignitor_project\system\Database\MigrationRunner.php(182): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\wamp64\www\codeignitor_project\system\Commands\Database\Migrate.php(85): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\wamp64\www\codeignitor_project\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\wamp64\www\codeignitor_project\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\wamp64\www\codeignitor_project\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\wamp64\www\codeignitor_project\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\wamp64\www\codeignitor_project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-09-13 09:56:28 --> mysqli_sql_exception: Duplicate entry 'plumbing' for key 'service_categories.uq_category_slug' in C:\wamp64\www\codeignitor_project\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\wamp64\www\codeignitor_project\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `se...', 0)
+#1 C:\wamp64\www\codeignitor_project\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `se...')
+#2 C:\wamp64\www\codeignitor_project\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `se...')
+#3 C:\wamp64\www\codeignitor_project\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `se...', NULL, false)
+#4 C:\wamp64\www\codeignitor_project\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\wamp64\www\codeignitor_project\app\Database\Seeds\ServiceCategoriesSeeder.php(35): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\wamp64\www\codeignitor_project\system\Database\Seeder.php(149): App\Database\Seeds\ServiceCategoriesSeeder->run()
+#7 C:\wamp64\www\codeignitor_project\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\wamp64\www\codeignitor_project\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\wamp64\www\codeignitor_project\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\wamp64\www\codeignitor_project\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\wamp64\www\codeignitor_project\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\wamp64\www\codeignitor_project\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
