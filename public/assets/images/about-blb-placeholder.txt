@@ -1,0 +1,5 @@
+# Placeholder for About BLB Image
+# This file serves as a placeholder for the about section image
+# Replace this with an actual image showing BLB services or building
+# Recommended format: JPG or PNG
+# Recommended size: 600x400 pixels for optimal display

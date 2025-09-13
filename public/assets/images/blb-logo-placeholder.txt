@@ -1,0 +1,5 @@
+# Placeholder for BLB Logo
+# This file serves as a placeholder for the BLB logo image
+# Replace this with the actual Buganda Land Board logo image file
+# Recommended format: PNG with transparent background
+# Recommended size: 200x60 pixels for optimal display
