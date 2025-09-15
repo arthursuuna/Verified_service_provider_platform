@@ -175,4 +175,49 @@ class UserController extends BaseController
 
         return view('user/view_request', $data);
     }
+
+    /**
+     * Change user password
+     */
+    public function changePassword()
+    {
+        $userId = $this->session->get('user_id');
+
+        // Validation rules
+        $rules = [
+            'current_password' => 'required|min_length[6]',
+            'new_password' => 'required|min_length[6]',
+            'confirm_password' => 'required|matches[new_password]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
+        }
+
+        $currentPassword = $this->request->getPost('current_password');
+        $newPassword = $this->request->getPost('new_password');
+
+        // Get current user
+        $user = $this->userModel->find($userId);
+
+        // Verify current password
+        if (!$this->userModel->verifyPassword($currentPassword, $user['password_hash'])) {
+            $this->session->setFlashdata('error', 'Current password is incorrect.');
+            return redirect()->back()->withInput();
+        }
+
+        // Update password
+        $data = [
+            'password_hash' => password_hash($newPassword, PASSWORD_DEFAULT),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->userModel->update($userId, $data)) {
+            $this->session->setFlashdata('success', 'Password updated successfully!');
+        } else {
+            $this->session->setFlashdata('error', 'Failed to update password. Please try again.');
+        }
+
+        return redirect()->to('user/profile');
+    }
 }

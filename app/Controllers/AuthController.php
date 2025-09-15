@@ -285,7 +285,8 @@ class AuthController extends BaseController
         // For now, we'll use a simple approach
         $cookieValue = base64_encode($userId . '|' . $token);
 
-        set_cookie([
+        $response = \Config\Services::response();
+        $response->setCookie([
             'name' => 'remember_token',
             'value' => $cookieValue,
             'expire' => 30 * 24 * 60 * 60, // 30 days
@@ -299,7 +300,8 @@ class AuthController extends BaseController
      */
     private function clearRememberMeCookie()
     {
-        delete_cookie('remember_token');
+        $response = \Config\Services::response();
+        $response->deleteCookie('remember_token');
     }
 
     /**
@@ -311,7 +313,8 @@ class AuthController extends BaseController
             return; // Already logged in
         }
 
-        $rememberToken = get_cookie('remember_token');
+        $request = \Config\Services::request();
+        $rememberToken = $request->getCookie('remember_token');
 
         if ($rememberToken) {
             $decoded = base64_decode($rememberToken);

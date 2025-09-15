@@ -19,12 +19,14 @@ $routes->group('', ['filter' => 'guest'], function ($routes) {
 
 // Logout route (authenticated users only)
 $routes->get('logout', 'AuthController::logout', ['filter' => 'auth']);
+$routes->get('auth/logout', 'AuthController::logout', ['filter' => 'auth']);
 
 // User dashboard routes (authenticated regular users)
 $routes->group('user', ['filter' => 'auth'], function ($routes) {
     $routes->get('dashboard', 'UserController::dashboard');
     $routes->get('profile', 'UserController::profile');
     $routes->post('profile/update', 'UserController::updateProfile');
+    $routes->post('change-password', 'UserController::changePassword');
     $routes->get('requests', 'UserController::requests');
     $routes->get('request/(:num)', 'UserController::viewRequest/$1');
 });

@@ -85,55 +85,56 @@
                         <h6 class="m-0 font-weight-bold text-primary">Profile Information</h6>
                     </div>
                     <div class="card-body">
-                        <?= form_open('user/profile', ['class' => 'user']) ?>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="name" class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" id="name" name="name"
-                                    value="<?= old('name', esc($user['name'])) ?>" required>
-                                <?php if (isset($validation) && $validation->hasError('name')): ?>
-                                    <div class="text-danger mt-1"><?= $validation->getError('name') ?></div>
-                                <?php endif; ?>
+                        <form method="post" action="<?= base_url('user/profile/update') ?>" class="user">
+                            <?= csrf_field() ?>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="<?= old('name', esc($user['name'])) ?>" required>
+                                    <?php if (isset($validation) && $validation->hasError('name')): ?>
+                                        <div class="text-danger mt-1"><?= $validation->getError('name') ?></div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value="<?= old('email', esc($user['email'])) ?>" required>
+                                    <?php if (isset($validation) && $validation->hasError('email')): ?>
+                                        <div class="text-danger mt-1"><?= $validation->getError('email') ?></div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    value="<?= old('email', esc($user['email'])) ?>" required>
-                                <?php if (isset($validation) && $validation->hasError('email')): ?>
-                                    <div class="text-danger mt-1"><?= $validation->getError('email') ?></div>
-                                <?php endif; ?>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                        value="<?= old('phone', esc($user['phone'])) ?>">
+                                    <?php if (isset($validation) && $validation->hasError('phone')): ?>
+                                        <div class="text-danger mt-1"><?= $validation->getError('phone') ?></div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="location" class="form-label">Location</label>
+                                    <input type="text" class="form-control" id="location" name="location"
+                                        value="<?= old('location', esc($user['location'])) ?>">
+                                    <?php if (isset($validation) && $validation->hasError('location')): ?>
+                                        <div class="text-danger mt-1"><?= $validation->getError('location') ?></div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" name="phone"
-                                    value="<?= old('phone', esc($user['phone'])) ?>">
-                                <?php if (isset($validation) && $validation->hasError('phone')): ?>
-                                    <div class="text-danger mt-1"><?= $validation->getError('phone') ?></div>
-                                <?php endif; ?>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-1"></i>Update Profile
+                                    </button>
+                                    <a href="<?= base_url('user/dashboard') ?>" class="btn btn-secondary ms-2">
+                                        <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                                    </a>
+                                </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="location" class="form-label">Location</label>
-                                <input type="text" class="form-control" id="location" name="location"
-                                    value="<?= old('location', esc($user['location'])) ?>">
-                                <?php if (isset($validation) && $validation->hasError('location')): ?>
-                                    <div class="text-danger mt-1"><?= $validation->getError('location') ?></div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>Update Profile
-                                </button>
-                                <a href="<?= base_url('user/dashboard') ?>" class="btn btn-secondary ms-2">
-                                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
-                                </a>
-                            </div>
-                        </div>
-                        <?= form_close() ?>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -145,32 +146,33 @@
                         <h6 class="m-0 font-weight-bold text-primary">Change Password</h6>
                     </div>
                     <div class="card-body">
-                        <?= form_open('user/change-password', ['class' => 'user']) ?>
-                        <div class="mb-3">
-                            <label for="current_password" class="form-label">Current Password *</label>
-                            <input type="password" class="form-control" id="current_password" name="current_password" required>
-                            <?php if (isset($validation) && $validation->hasError('current_password')): ?>
-                                <div class="text-danger mt-1"><?= $validation->getError('current_password') ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="mb-3">
-                            <label for="new_password" class="form-label">New Password *</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password" required>
-                            <?php if (isset($validation) && $validation->hasError('new_password')): ?>
-                                <div class="text-danger mt-1"><?= $validation->getError('new_password') ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirm_password" class="form-label">Confirm New Password *</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                            <?php if (isset($validation) && $validation->hasError('confirm_password')): ?>
-                                <div class="text-danger mt-1"><?= $validation->getError('confirm_password') ?></div>
-                            <?php endif; ?>
-                        </div>
-                        <button type="submit" class="btn btn-warning w-100">
-                            <i class="fas fa-lock me-1"></i>Change Password
-                        </button>
-                        <?= form_close() ?>
+                        <form method="post" action="<?= base_url('user/change-password') ?>" class="user">
+                            <?= csrf_field() ?>
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Current Password *</label>
+                                <input type="password" class="form-control" id="current_password" name="current_password" required>
+                                <?php if (isset($validation) && $validation->hasError('current_password')): ?>
+                                    <div class="text-danger mt-1"><?= $validation->getError('current_password') ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New Password *</label>
+                                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                                <?php if (isset($validation) && $validation->hasError('new_password')): ?>
+                                    <div class="text-danger mt-1"><?= $validation->getError('new_password') ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm New Password *</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                <?php if (isset($validation) && $validation->hasError('confirm_password')): ?>
+                                    <div class="text-danger mt-1"><?= $validation->getError('confirm_password') ?></div>
+                                <?php endif; ?>
+                            </div>
+                            <button type="submit" class="btn btn-warning w-100">
+                                <i class="fas fa-lock me-1"></i>Change Password
+                            </button>
+                        </form>
                     </div>
                 </div>
 
