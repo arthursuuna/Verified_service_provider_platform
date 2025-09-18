@@ -47,6 +47,9 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
 
 // Public service provider routes
 $routes->get('providers', 'ServiceProviderController::index');
+$routes->get('providers/register', 'ServiceProviderController::register');
+$routes->post('providers/register', 'ServiceProviderController::processRegistration');
+$routes->get('providers/registration-success', 'ServiceProviderController::registrationSuccess');
 $routes->get('providers/(:segment)', 'ServiceProviderController::category/$1');
 $routes->get('provider/(:num)', 'ServiceProviderController::view/$1');
 $routes->post('request-service/(:num)', 'ServiceProviderController::requestService/$1');
