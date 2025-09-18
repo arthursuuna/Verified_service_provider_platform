@@ -62,7 +62,7 @@
                                 <i class="fas fa-search me-2"></i>Find Services
                             </a>
                             <a href="<?= base_url('providers/register') ?>" class="btn btn-outline-light btn-lg px-4">
-                                <i class="fas fa-user-plus me-2"></i>Join as Provider
+                                <i class="fas fa-user-plus me-2"></i>Join as Provider.
                             </a>
                         </div>
                     </div>
